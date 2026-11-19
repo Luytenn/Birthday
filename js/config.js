@@ -21,6 +21,9 @@ window.CONFIG = {
   //  in a plain <audio> tag — use an .mp3 file for the cassette to work.)
   song: { url: "assets/song/colapso.mp3", title: "ruduni song" },
 
+  // BACKGROUND SONG — plays softly from the first click, loops; the cassette stops it.
+  bgSong: { url: "assets/song/mistky.mp3", volume: 0.55 },
+
   // Confetti colours when the envelope / gift opens
   confettiColors: ["#b11f28", "#e05761", "#f0c766", "#faf7f0", "#9c1a23"]
 };

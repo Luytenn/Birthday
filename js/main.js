@@ -88,6 +88,22 @@
   if (CFG.song && CFG.song.url) audio.src = CFG.song.url;
   if (CFG.song && CFG.song.title){ cassette.querySelector(".cassette__label").textContent = CFG.song.title; }
 
+  // --- background music: plays from page load (starts on first user gesture) ---
+  const bg = new Audio();
+  if (CFG.bgSong && CFG.bgSong.url) bg.src = CFG.bgSong.url;
+  bg.loop = true;
+  bg.volume = (CFG.bgSong && CFG.bgSong.volume != null) ? CFG.bgSong.volume : 0.55;
+  let bgOn = false, cassetteUsed = false;
+  function startBg(){
+    if (bgOn || cassetteUsed || !bg.src) return;
+    bgOn = true;
+    bg.play().catch(() => { bgOn = false; });
+  }
+  function stopBg(){ bg.pause(); }
+  // autoplay is blocked until the user interacts, so start on the first gesture
+  window.addEventListener("pointerdown", startBg);
+  window.addEventListener("keydown", startBg);
+
   let wantsPlay = false;
   function syncMusicUI(){
     const playing = !audio.paused && !audio.ended && audio.currentTime > 0;
@@ -98,6 +114,7 @@
   function toggleMusic(){
     if (!audio.src){ flashNoSong(); return; }
     if (audio.paused){
+      cassetteUsed = true; stopBg();
       audio.play().then(syncMusicUI).catch(flashNoSong);
     } else { audio.pause(); syncMusicUI(); }
   }
@@ -106,7 +123,12 @@
     lbl.textContent = "add song ♡";
     setTimeout(syncMusicUI, 1600);
   }
-  cassette.addEventListener("click", () => { go("opened"); toggleMusic(); });
+  cassette.addEventListener("click", () => {
+    cassetteUsed = true;
+    stopBg();                 // stop the background song
+    go("opened");
+    if (audio.src){ audio.play().then(syncMusicUI).catch(flashNoSong); }  // play the cassette song
+  });
   musicToggle.addEventListener("click", toggleMusic);
   audio.addEventListener("play", syncMusicUI);
   audio.addEventListener("pause", syncMusicUI);
