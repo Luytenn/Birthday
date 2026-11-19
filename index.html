@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Happy Birthday, My Love</title>
+<meta name="description" content="A little interactive gift, made with love." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Caveat:wght@500;600;700&family=Gochi+Hand&family=Shadows+Into+Light&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/styles.css?v=9" />
+</head>
+<body data-scene="envelope">
+
+  <!-- Ambient layer: floating hearts/sparkles live here -->
+  <div class="ambient" id="ambient" aria-hidden="true"></div>
+
+  <!-- Music control, persistent -->
+  <button class="music-toggle" id="musicToggle" aria-label="Play our song" title="Play our song">
+    <span class="music-toggle__disc"></span>
+    <span class="music-toggle__label">our song</span>
+  </button>
+
+  <!-- ============================================================= -->
+  <!-- SCENE 1 — ENVELOPE (landing)                                   -->
+  <!-- ============================================================= -->
+  <section class="scene scene--envelope is-active" data-scene="envelope" aria-label="Open your gift">
+    <div class="envelope-stage">
+      <div class="paper-grain" aria-hidden="true"></div>
+
+      <h1 class="balloon-title">
+        <span class="balloon-title__row">HAPPY</span>
+        <span class="balloon-title__row balloon-title__row--2">BIRTHDAY</span>
+      </h1>
+
+      <div class="cutout">
+        <div class="cutout__balloons" aria-hidden="true">
+          <span class="foil-heart foil-heart--l"></span>
+          <span class="foil-heart foil-heart--r"></span>
+        </div>
+        <span class="star star--glitter star--a" aria-hidden="true"></span>
+        <span class="star star--chrome star--b" aria-hidden="true"></span>
+        <span class="star star--glitter star--c" aria-hidden="true"></span>
+        <span class="party-hat" aria-hidden="true"></span>
+        <!-- Photo slot: drop assets/her.png (a cut-out portrait works best) -->
+        <div class="cutout__photo"><img src="assets/her.png" alt="The birthday girl" onerror="this.closest('.cutout__photo').classList.add('is-missing')" /></div>
+      </div>
+
+      <button class="open-me" id="openMe">
+        <span class="open-me__text">open me!</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ============================================================= -->
+  <!-- SCENE 2 — MENU (pick a surprise)                               -->
+  <!-- ============================================================= -->
+  <section class="scene scene--menu" data-scene="menu" aria-label="Pick a surprise">
+    <div class="menu-inner">
+      <h2 class="marker-title">
+        <span class="star star--gold star--d" aria-hidden="true"></span>
+        pick a surprise!
+        <span class="bow bow--sm" aria-hidden="true"></span>
+      </h2>
+
+      <div class="surprise-grid">
+        <button class="surprise" data-go="message">
+          <span class="surprise__art surprise__art--cake" aria-hidden="true"></span>
+          <span class="surprise__label">message</span>
+        </button>
+        <button class="surprise" data-go="memories">
+          <span class="surprise__art surprise__art--envelope" aria-hidden="true"></span>
+          <span class="surprise__label">memories</span>
+        </button>
+        <button class="surprise" data-go="gift">
+          <span class="surprise__art surprise__art--bears" aria-hidden="true"></span>
+          <span class="surprise__label">gift</span>
+        </button>
+      </div>
+
+      <button class="back-link" data-go="envelope">back</button>
+    </div>
+  </section>
+
+  <!-- ============================================================= -->
+  <!-- SCENE 3 — MESSAGE                                              -->
+  <!-- ============================================================= -->
+  <section class="scene scene--message" data-scene="message" aria-label="A message for you">
+    <div class="message-inner">
+      <div class="calendar reveal">
+        <span class="foil-heart foil-heart--balloon" aria-hidden="true"></span>
+        <span class="surprise__art surprise__art--cake calendar__cake" aria-hidden="true"></span>
+        <div class="calendar__card">
+          <div class="calendar__head"><span class="mini-heart"></span> <span data-month>asdad</span></div>
+          <div class="calendar__grid" id="calGrid" data-highlight="19"></div>
+        </div>
+      </div>
+
+      <div class="polaroid polaroid--msg reveal">
+        <span class="bunting" aria-hidden="true"></span>
+        <div class="polaroid__photo"><img src="assets/birthdayruduni.png" alt="Us" onerror="this.parentElement.classList.add('is-missing')" /></div>
+        <p class="polaroid__caption marker">happy birthday mi amorcito ruduni gatuni saikuni!</p>
+      </div>
+
+      <p class="handwritten message-note reveal">
+        Another year of you, another page full of memories.
+        Here's to more laughs, little adventures, ruduni moments
+        &amp; days worth keeping forever.
+      </p>
+
+      <button class="back-link" data-go="menu">back</button>
+    </div>
+  </section>
+
+  <!-- ============================================================= -->
+  <!-- SCENE 4 — MEMORIES (scrolling timeline)                        -->
+  <!-- ============================================================= -->
+  <section class="scene scene--memories" data-scene="memories" aria-label="Our memories">
+    <div class="memories-inner">
+      <h2 class="marker-title marker-title--center">our memories</h2>
+
+      <!-- First date -->
+      <article class="memory reveal">
+        <div class="camera">
+          <div class="camera__body">
+            <div class="camera__screen"><img src="assets/memories/2026-05-31T01-16-50-113.jpg" alt="Our first date" onerror="this.parentElement.classList.add('is-missing')" /></div>
+            <div class="camera__lens"><span></span></div>
+            <div class="camera__flash"></div>
+          </div>
+          <span class="tag tag--fav">favourite person</span>
+          <span class="sticker-bunny" aria-hidden="true"></span>
+          <span class="star star--glitter star--e" aria-hidden="true"></span>
+        </div>
+        <div class="note-card note-card--gingham">
+          <h3 class="marker">our first date!!</h3>
+          <p class="handwritten">The day we celebrated together, having our little ruduni parties, buying cakes and fireworks, playing culebritica songs and dancing together, I felt ochen happy. Those moments became some of my sweetest memories, and I wish we could relive them a thousand times.</p>
+        </div>
+      </article>
+
+      <!-- Birthday -->
+      <article class="memory memory--rev reveal">
+        <div class="notebook">
+          <h3 class="marker">Talented ruduni gatuni <span data-date> 10/8/2026</span></h3>
+          <p class="handwritten">I noticed long a time that my ruduni it's ochen talented and that you got an special talent to draw hapinness to this world.</p>
+          <span class="surprise__art surprise__art--cake notebook__cake" aria-hidden="true"></span>
+        </div>
+        <div class="filmframe">
+          <span class="filmframe__label">KODAK PORTRA 400</span>
+          <img src="assets/memories/Captura_de_pantalla_2026-10-08_201011.png" alt="Birthday" onerror="this.parentElement.classList.add('is-missing')" />
+        </div>
+      </article>
+
+      <!-- First trip -->
+      <article class="memory memory--trip reveal">
+        <h3 class="marker memory__heading">Rudunis gameuni and gif timess<span data-date>01 / 01</span></h3>
+        <div class="trip-row">
+          <div class="polaroid polaroid--sm"><div class="polaroid__photo"><img src="assets/memories/photo_2026-06-10_23-44-32.jpg" alt="Trip 1" onerror="this.parentElement.classList.add('is-missing')" /></div></div>
+          <div class="polaroid polaroid--sm polaroid--gingham"><div class="polaroid__photo"><img src="assets/memories/IMG_3489.png" alt="Trip 2" onerror="this.parentElement.classList.add('is-missing')" /></div></div>
+          <div class="polaroid polaroid--sm"><div class="polaroid__photo"><img src="assets/memories/Screenshot_565.png" alt="Trip 3" onerror="this.parentElement.classList.add('is-missing')" /></div></div>
+        </div>
+        <p class="handwritten memory__caption">New rudunis moments and rudunis games and countless lughs we had.</p>
+      </article>
+
+      <!-- New year -->
+      <article class="memory memory--rev reveal">
+        <div class="polaroid polaroid--ny polaroid--gingham">
+          <div class="polaroid__photo"><img src="assets/memories/image.png" alt="New year" onerror="this.parentElement.classList.add('is-missing')" /></div>
+        </div>
+        <div class="open-envelope">
+          <div class="open-envelope__note">
+            <h3 class="marker">Rudunis family drawing<span data-date>16 / 08</span></h3>
+            <p class="handwritten">A rudunis family where we and our kids will look like and how ochen happy we will be))</p>
+          </div>
+          <span class="open-envelope__flap" aria-hidden="true"></span>
+        </div>
+      </article>
+
+      <button class="back-link" data-go="menu">back</button>
+    </div>
+  </section>
+
+  <!-- ============================================================= -->
+  <!-- SCENE 5 — GIFT (wrapped)                                       -->
+  <!-- ============================================================= -->
+  <section class="scene scene--gift" data-scene="gift" aria-label="Open your gift">
+    <div class="gift-inner">
+      <p class="marker gift__cta">click to open your gift! &lt;3</p>
+      <button class="parcel" id="parcel" aria-label="Open the gift">
+        <span class="parcel__string parcel__string--v" aria-hidden="true"></span>
+        <span class="parcel__string parcel__string--h" aria-hidden="true"></span>
+        <span class="parcel__bow" aria-hidden="true"></span>
+        <span class="filmstrip" aria-hidden="true">
+          <span class="filmstrip__frame"><img src="assets/rudunigif/rudunigif1.png" alt="" onerror="this.parentElement.classList.add('is-missing')"></span>
+          <span class="filmstrip__frame"><img src="assets/rudunigif/rudunigif2.png" alt="" onerror="this.parentElement.classList.add('is-missing')"></span>
+          <span class="filmstrip__frame"><img src="assets/rudunigif/rudunigif3.png" alt="" onerror="this.parentElement.classList.add('is-missing')"></span>
+          <span class="filmstrip__frame"><img src="assets/rudunigif/rudunigif4.png" alt="" onerror="this.parentElement.classList.add('is-missing')"></span>
+        </span>
+        <span class="doily" aria-hidden="true"><span class="doily__text marker">happy<br>birthday</span></span>
+        <span class="scribble-heart scribble-heart--1" aria-hidden="true"></span>
+        <span class="scribble-heart scribble-heart--2" aria-hidden="true"></span>
+        <span class="scribble-heart scribble-heart--3" aria-hidden="true"></span>
+        <span class="surprise__art surprise__art--cake parcel__cake" aria-hidden="true"></span>
+      </button>
+      <button class="back-link" data-go="menu">back</button>
+    </div>
+  </section>
+
+  <!-- ============================================================= -->
+  <!-- SCENE 6 — GIFT OPENED (reveal)                                 -->
+  <!-- ============================================================= -->
+  <section class="scene scene--opened" data-scene="opened" aria-label="Your gift">
+    <div class="opened-inner">
+      <p class="marker opened__cta">click the cassette to play our favourite song &lt;3</p>
+
+      <div class="box">
+        <div class="box__flap box__flap--back" aria-hidden="true"></div>
+        <div class="box__inside">
+          <span class="foil-heart foil-heart--balloon box__balloon" aria-hidden="true"></span>
+          <span class="bouquet" aria-hidden="true"></span>
+          <span class="mascot" aria-hidden="true">
+            <span class="mascot__ear mascot__ear--l"></span>
+            <span class="mascot__ear mascot__ear--r"></span>
+            <span class="mascot__body">
+              <span class="mascot__eye mascot__eye--l"></span>
+              <span class="mascot__eye mascot__eye--r"></span>
+              <span class="mascot__cheek mascot__cheek--l"></span>
+              <span class="mascot__cheek mascot__cheek--r"></span>
+              <span class="mascot__mouth"></span>
+            </span>
+          </span>
+          <div class="polaroid polaroid--inbox"><div class="polaroid__photo"><img src="assets/rudunigif/special_rudunigif.png" alt="Us" onerror="this.parentElement.classList.add('is-missing')"></div></div>
+          <button class="cassette" id="cassette" aria-label="Play our song">
+            <span class="cassette__reel cassette__reel--l"></span>
+            <span class="cassette__reel cassette__reel--r"></span>
+            <span class="cassette__window"></span>
+            <span class="cassette__label">our song</span>
+          </button>
+        </div>
+        <div class="box__flap box__flap--front" aria-hidden="true"></div>
+      </div>
+
+      <p class="handwritten opened__letter">
+        Thank you for everything you've done for me and for always being by my side.
+        I hope you like this little gift &mdash; it comes with so much love. I can't wait to
+        make even more memories with you, go on more adventures, and celebrate many more
+        special moments together. I love you, always.
+      </p>
+
+      <button class="back-link" data-go="gift">back</button>
+    </div>
+  </section>
+
+  <audio id="song" preload="none" loop></audio>
+
+  <script src="js/config.js?v=9"></script>
+  <script src="js/main.js?v=9"></script>
+</body>
+</html>
